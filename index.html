@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Edit.JS</title>
+    <style type="text/css"><!--
+      #container { position: relative; }
+      #imageView { border: 1px solid #000; }
+      #imageTemp { position: absolute; top: 1px; left: 1px; }
+      form {  display:inline;}
+      .full-spectrum .sp-palette {
+        max-width: 200px;
+      }
+      body {
+        background-color: #eee;
+        z-index:-2;
+      }
+      #c {
+        width: 640px;
+        height: 360px;
+        border:1px solid #111;
+        float:left;
+        background:#eee;
+      }
+      #main{
+        width:650px;
+        margin:auto;
+      }
+     }
+    </style>
+    <script src="includes/jquery.min.js"></script>
+    <script src='includes/spectrum.js'></script>
+
+    <script src='includes/mootools.js'></script>
+    <script src='includes/imageloader.js'></script>
+
+    <script src='includes/jquery.imageFlip.min.js'></script>
+
+    
+    <link rel='stylesheet' href='includes/spectrum.css' />
+    <script>
+      $(document).ready(function() {
+       $(".color").spectrum({
+          color: "#333",
+          showInput: true,
+          change: function(color) {
+              $("#basic-log").text("change called: " + color.toHexString());
+          }
+        });
+      });
+    </script>
+    <script>
+        $(window).ready(function(){
+            $(".canvasFlipVertical").imageFlip({
+                horizontalFlip: false,
+                verticalFlip: true,
+                canvas: true
+            });
+            $(".canvasFlipHorizontal").imageFlip({
+                horizontalFlip: true,
+                verticalFlip: false,
+                canvas: true
+            });
+            $(".canvasFlipVerticalHorizontal").imageFlip({
+                horizontalFlip: true,
+                verticalFlip: true,
+                canvas: true
+            });
+            $(".cssFlipVertical").imageFlip({
+                horizontalFlip: false,
+                verticalFlip: true,
+                canvas: false
+            });
+            $(".cssFlipHorizontal").imageFlip({
+                horizontalFlip: true,
+                verticalFlip: false,
+                canvas: false
+            });
+            $(".cssFlipVerticalHorizontal").imageFlip({
+                horizontalFlip: true,
+                verticalFlip: true,
+                canvas: false
+            });
+
+        });
+    </script>
+
+  </head>
+  <body>
+    <label>Image File:
+      <input type="file" id="imageLoader" name="imageLoader"/>
+    </label>
+    <label>Drawing tool: 
+      <select id="tool">
+        <option value="line">Line</option>
+        <option value="rectFull">Box Filled</option>
+        <option value="rect">Box Outline</option>
+        <option value="pencil">Pencil</option>
+        <option value="eraser">Eraser</option>
+        <option value="Select">Select</option>
+        <option value="Select">Text</option>
+      </select>
+    </label> 
+    <label>Thickness:
+      <select id="thickness">
+        <option value="normal">Normal</option>
+        <option value="thin">Thin</option>
+        <option value="thick">Thick</option>
+        <option value="thicker">Thicker</option>
+      </select>
+    </label>
+
+    <input type='text' class="color" id="picker"/>
+    <button id ="greyscale">Greyscale</button>
+    <button id ="invert">Invert</button>
+    <button id ="save">Save</button>
+    <button id ="tempt">temp</button>
+
+   <!--  <button id ="zoomIn">+</button>
+    <label>Length:
+      <input id="canH">
+    </label>
+    <label>
+      Width:
+      <input id="canW">
+
+    </label> -->
+
+
+    <hr>
+
+    <div id="container">
+      <canvas id="imageView" >
+        <p>Get a better browser.</p>      
+      </canvas>
+      <img id="canvasImg">
+      <hr>
+      
+    </div>
+    <ul>To do:
+      <li>Rotate</li>
+      <li>Scale</li>
+      <li>Bucket</li>
+      <li>Picker</li>
+      <li></li>
+    </ul>
+    <script type="text/javascript" src="includes/help.js"></script>
+  </body>
+</html>
